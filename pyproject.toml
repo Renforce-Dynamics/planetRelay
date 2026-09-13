@@ -3,10 +3,14 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
+authors = [{name = "Renforce Dynamics"}]
+maintainers = [{name = "Renforce Dynamics"}]
+readme = "README.md"
+license = {file = "LICENSE"}
 name = "planetrelay"
 version = "0.1.0"
 requires-python = ">=3.10"
-description = "Configurable UDP relay and round-trip latency probe"
+description = "Configurable UDP routing and latency measurement"
 dependencies = ["cadence-config>=0.1,<0.2"]
 
 [project.scripts]
@@ -22,3 +26,8 @@ planetrelay = ["data/*.yaml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[project.urls]
+Repository = "https://github.com/Renforce-Dynamics/planetRelay"
+Issues = "https://github.com/Renforce-Dynamics/planetRelay/issues"
+Documentation = "https://github.com/Renforce-Dynamics/planetRelay#readme"

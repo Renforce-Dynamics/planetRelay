@@ -1,0 +1,6 @@
+{
+  "packages": [
+    "external/cadence/packages/cadence-config",
+    "."
+  ]
+}
