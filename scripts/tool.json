@@ -1,0 +1,5 @@
+{
+  "module": "planetrelay",
+  "doctor": ["-m", "planetrelay", "--check"],
+  "run": ["-m", "planetrelay"]
+}

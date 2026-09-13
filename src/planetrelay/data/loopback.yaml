@@ -1,0 +1,15 @@
+version: 1
+ingress:
+  bind_host: 127.0.0.1
+  allowed_source_hosts: [127.0.0.1]
+target:
+  host: 127.0.0.1
+routes:
+  probe:
+    port: 50590
+    target_port: 50591
+    magic: PLAT
+    packet_size: 108
+    delivery: all
+runtime:
+  report_interval_s: 1.0

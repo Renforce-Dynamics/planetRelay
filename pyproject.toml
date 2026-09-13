@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "planetrelay"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "Configurable UDP relay and round-trip latency probe"
+dependencies = ["cadence-config>=0.1,<0.2"]
+
+[project.scripts]
+planetrelay = "planetrelay.runtime:main"
+planetrelay-latency = "planetrelay.latency:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["planetrelay*"]
+
+[tool.setuptools.package-data]
+planetrelay = ["data/*.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
