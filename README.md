@@ -1,4 +1,4 @@
-# PlanetRelay
+# planetRelay
 
 通用 UDP 转发服务：根据 route 配置过滤来源、校验 magic 与包长，按 `latest` 或 `all` 策略原样转发，并提供计数与 RTT 测量。只依赖轻量配置包 `cadence-config`；安装时不包含 planner、手柄、录制或机器人执行器。
 
