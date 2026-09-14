@@ -20,11 +20,11 @@ Run `planetrelay --config FILE --check` to validate without opening sockets. Use
 
 ## Source installation
 
-Bootstrap installs only `cadence-config` from the pinned `external/cadence` and the local relay package. Runtime dependencies remain task independent. Rally site routes live in the task repository, including `configs/a3/sites/ad201/relay.yaml`.
+Bootstrap installs only `planet-config` from the pinned `external/planetConfig` and the local relay package. Runtime dependencies remain task independent. Rally site routes live in the task repository, including `configs/a3/sites/ad201/relay.yaml`.
 
 ## Layering rules
 
-All service configuration entry points use `cadence-config`; each service validates its own schema after composition.
+All service configuration entry points use `planet-config`; each service validates its own schema after composition.
 
 1. Apply `extends` entries in their listed order.
 2. Apply `compose` layers in the fixed order `robot`, `backend`, `task`, `site`, `experiment`.
@@ -37,4 +37,4 @@ Relative inheritance paths resolve beside the YAML declaring them. `pkg://packag
 
 Source ownership, Python dependencies and YAML inheritance are separate: Git submodules select code revisions; package metadata selects compatible installed distributions; `extends` selects configuration values. Changing a Git submodule does not select a task profile automatically.
 
-See the [shared loader reference](https://github.com/Renforce-Dynamics/cadence/blob/main/docs/configuration.md).
+See the [shared loader reference](https://github.com/Renforce-Dynamics/planetConfig/blob/main/docs/configuration.md).

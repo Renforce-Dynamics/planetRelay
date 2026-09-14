@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
-from cadence_config import ConfigError, load_config as load_layers
+from planet_config import ConfigError, load_config as load_layers
 
 
 class RelayConfigError(ValueError):

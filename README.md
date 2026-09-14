@@ -21,7 +21,7 @@ cd planetRelay
 
 ## Dependencies and configuration
 
-The `external/cadence` submodule supplies only `cadence-config`; no planner, joystick, recording or execution service is installed.
+The [planetConfig](https://github.com/Renforce-Dynamics/planetConfig) submodule supplies `planet-config`. Bootstrap installs that loader and the relay package. The complete source and package dependency graph is independent of any robot runtime or SDK.
 
 The built-in `pkg://planetrelay/data/loopback.yaml` profile routes local PLAT probes from port 50590 to 50591. Override individual route fields in an overlay:
 
@@ -53,6 +53,8 @@ See [configuration](docs/configuration.md) and the [rally network guide](https:/
 ```
 
 Submodules pin source commits; Python requirements describe package compatibility. Bootstrap installs only the explicit packages in `source-workspace.json`. `scripts/setup.sh --wheelhouse /path/to/wheels` is available for package-based installation. Upgrade dependencies by committing reviewed submodule revisions with the parent repository.
+
+Tool defaults can be configured with `PLANET_PYTHON`, `PLANET_VENV` and `PLANET_WHEELHOUSE`, or with the corresponding command-line options.
 
 ## Authorship and license
 
