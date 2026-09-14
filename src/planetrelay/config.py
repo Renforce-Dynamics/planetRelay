@@ -95,8 +95,10 @@ class RelayConfig:
 
 
 def load_config(path: str | Path) -> RelayConfig:
+    if "://" in str(path):
+        raise RelayConfigError("configuration must be an explicit filesystem entry")
     try:
-        resolved = load_layers(path)
+        resolved = load_layers(Path(path).expanduser().resolve())
     except (ConfigError, OSError) as error:
         raise RelayConfigError(str(error)) from error
     source_path = resolved.source

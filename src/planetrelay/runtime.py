@@ -149,7 +149,7 @@ class RelayRuntime:
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", default="pkg://planetrelay/data/loopback.yaml")
+    parser.add_argument("--config", required=True, help="Explicit entry YAML, e.g. configs/entry/entry_relay.yaml")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--duration-s", type=float, default=0)
     args = parser.parse_args(argv)

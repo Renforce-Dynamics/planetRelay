@@ -1,10 +1,12 @@
+from pathlib import Path
 import pytest
 from planetrelay.config import RelayConfigError, load_config
 
 
 def test_task_override_keeps_source_defaults(tmp_path):
     task = tmp_path / "relay.yaml"
-    task.write_text("extends: pkg://planetrelay/data/loopback.yaml\nroutes:\n  probe:\n    target_port: 50601\n")
+    base = Path(__file__).resolve().parents[1] / "configs/entry/entry_relay.yaml"
+    task.write_text(f"extends: {base}\nroutes:\n  probe:\n    target_port: 50601\n")
     cfg = load_config(task)
     assert cfg.routes[0].target_port == 50601
     assert cfg.routes[0].delivery == "all"

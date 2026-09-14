@@ -17,12 +17,12 @@ dependencies = ["planet-config>=0.1,<0.2"]
 planetrelay = "planetrelay.runtime:main"
 planetrelay-latency = "planetrelay.latency:main"
 
+[tool.setuptools]
+include-package-data = false
+
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["planetrelay*"]
-
-[tool.setuptools.package-data]
-planetrelay = ["data/*.yaml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -11,7 +11,7 @@ git clone --recurse-submodules git@github.com:Renforce-Dynamics/planetRelay.git
 cd planetRelay
 ./scripts/bootstrap.sh
 
-./scripts/run.sh -- --config pkg://planetrelay/data/loopback.yaml
+./scripts/run.sh --config configs/entry/entry_relay.yaml
 ```
 
 默认在本机转发 PLAT 探测包：`50590 → 50591`。
@@ -23,10 +23,10 @@ cd planetRelay
 
 ## 配置路由
 
-新建 `relay-site.yaml`，将地址改为实际收发端：
+新建 `configs/entry/entry_relay_site.yaml`，将地址改为实际收发端：
 
 ```yaml
-extends: pkg://planetrelay/data/loopback.yaml
+extends: entry_relay.yaml
 ingress:
   bind_host: 0.0.0.0
   allowed_source_hosts: [192.168.1.10]
@@ -39,12 +39,14 @@ routes:
 ```
 
 ```bash
-./scripts/run.sh -- --config ./relay-site.yaml
+./scripts/run.sh --config configs/entry/entry_relay_site.yaml
 ```
 
 示例继承了 PLAT 和 108 字节过滤条件；转发其他协议时一并调整 `magic`、
 `packet_size`。`latest` 转发当前接收批次的最新有效包，`all` 转发所有有效包。
 命令时效和丢包处理由接收应用负责。
+
+配置只保存在根目录 `configs/`；安装包只包含代码。每次启动都显式选择 entry，缺失路径直接报错。
 
 ## 文档与开发
 
@@ -55,5 +57,6 @@ routes:
 不依赖 Cadence 或 SDK；任务地址与拓扑放在任务仓库。
 
 开发：`./scripts/test.sh` 运行测试，`./scripts/build.sh` 构建安装包。
+`./scripts/doctor.sh --config configs/entry/entry_relay.yaml` 检查选定配置，不启动 I/O。
 
 工具支持 `--venv /path/to/env`。由 **Renforce Dynamics** 开发维护，采用 [MIT License](LICENSE)。

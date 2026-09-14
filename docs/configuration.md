@@ -2,12 +2,14 @@
 
 ## Routes and defaults
 
-The packaged default is `pkg://planetrelay/data/loopback.yaml`. The profile is a localhost PLAT probe route: ingress 50590, destination 50591, exact size 108, delivery `all`.
+The explicit entry `configs/entry/entry_relay.yaml` inherits the root profile `configs/loopback.yaml`. The profile is a localhost PLAT probe route: ingress 50590, destination 50591, exact size 108, delivery `all`.
 
 `routes` is a mapping keyed by route name. Inherited route fields can be overridden individually. `allowed_source_hosts` is a list and replaces its inherited value. A task owns actual hosts, interface bindings and protocol-specific routes.
 
+For a site entry in `configs/entry/entry_site.yaml`:
+
 ```yaml
-extends: pkg://planetrelay/data/loopback.yaml
+extends: entry_relay.yaml
 routes:
   probe:
     port: 50592
@@ -33,7 +35,7 @@ All service configuration entry points use `planet-config`; each service validat
 
 Mappings merge recursively; lists and scalars replace. Missing parents, duplicate YAML keys and inheritance cycles fail. A service may reject fields that are valid for a different service. `compose` keys are loader directives, not fields added to the resulting service configuration.
 
-Relative inheritance paths resolve beside the YAML declaring them. `pkg://package/path` resolves installed package resources. Resource fields accessed through `ResolvedConfig.path()` resolve relative to their declaration; output directories and Linux device/abstract-socket endpoints follow the consuming service's rules below. The generic loader does not rewrite every string into a filesystem path.
+All service profiles live in the root `configs/` tree; wheels contain code only. An explicit `--config` filesystem entry is required. Relative inheritance paths resolve beside the YAML declaring them, without searching another directory. Resource fields accessed through `ResolvedConfig.path()` resolve relative to their declaration; output directories and Linux device/abstract-socket endpoints follow the consuming service's rules below. The generic loader does not rewrite every string into a filesystem path.
 
 Source ownership, Python dependencies and YAML inheritance are separate: Git submodules select code revisions; package metadata selects compatible installed distributions; `extends` selects configuration values. Changing a Git submodule does not select a task profile automatically.
 
